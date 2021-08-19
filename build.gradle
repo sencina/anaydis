@@ -24,6 +24,7 @@ dependencies {
     /* Compile scope */
     implementation 'ar.edu.austral.fi:anaydis-base:1.2.1'
     implementation 'ar.edu.austral.fi:anaydis-anim:1.2.1'
+    implementation 'org.jetbrains:annotations:22.0.0'
 
     /* Test scope */
     testImplementation 'ar.edu.austral.fi:anaydis-test:1.2.1'
