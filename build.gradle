@@ -1,0 +1,32 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+idea {
+    project {
+        //Set specific jdk and language level
+        jdkName = '1.8'
+        languageLevel = '1.8'
+    }
+    module {
+        downloadSources = true
+    }
+}
+
+repositories {
+    // Central Repository
+    mavenCentral()
+
+    // Facultad de Ingeniería Repository
+    maven { url "https://austral.jfrog.io/artifactory/default-maven-local" }
+}
+
+dependencies {
+    /* Compile scope */
+    implementation 'ar.edu.austral.fi:anaydis-base:1.2.1'
+    implementation 'ar.edu.austral.fi:anaydis-anim:1.2.1'
+
+    /* Test scope */
+    testImplementation 'ar.edu.austral.fi:anaydis-test:1.2.1'
+    testImplementation 'org.assertj:assertj-core:3.20.2'
+    testImplementation 'junit:junit:4.13'
+}
