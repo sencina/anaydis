@@ -25,7 +25,7 @@ public class SorterCasesTest {
     @Test
     public void bestCaseInsertion(){
 
-            int i = 2;
+            int i = 1;
             List list = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
             List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
 
@@ -49,7 +49,7 @@ public class SorterCasesTest {
     @Test
     public void averageCaseInsertion(){
 
-        int i = 4;
+        int i = 1;
         List list = integerDataSetGenerator.createRandom((int) Math.pow(10,i));
         //Revisar el insertion sorter
         insertionSorter.sort(comparator,list);
@@ -60,7 +60,7 @@ public class SorterCasesTest {
     @Test
     public void bestCaseBubble(){
 
-        int i = 2;
+        int i = 1;
         List list = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
         List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
 
@@ -72,7 +72,7 @@ public class SorterCasesTest {
 
     @Test
     public void worstCaseBubble(){
-        int i = 6;
+        int i = 1;
         List list = integerDataSetGenerator.createDescending((int) Math.pow(10,i));
         List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
 
@@ -107,7 +107,7 @@ public class SorterCasesTest {
 
     @Test
     public void worstCaseSelection(){
-        int i = 6;
+        int i = 1;
         List list = integerDataSetGenerator.createDescending((int) Math.pow(10,i));
         List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
 
