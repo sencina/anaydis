@@ -36,7 +36,8 @@ public class IntegerDataSetGenerator implements DataSetGenerator {
     public @NotNull List createRandom(int length) {
         ArrayList<Integer> list = new ArrayList<>();
         for (int i = 0; i < length; i++) {
-            list.add((int)Math.random()*10000);
+            int number = (int) (Math.random()*1000000);
+            list.add(number);
         }
         return list;
     }

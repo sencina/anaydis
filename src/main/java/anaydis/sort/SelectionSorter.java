@@ -22,12 +22,12 @@ public class SelectionSorter extends AbstractSorter{
                     min = j;
                 }
             }
+
             if (min != i) {
                 swap(list, i, min);
 
             }
         }
-
 
     }
 

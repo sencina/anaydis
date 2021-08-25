@@ -22,12 +22,15 @@ public class SorterCasesTest {
         }
     };
 
+
+    private int length = (int) Math.pow(10,1)*1;
+
     @Test
     public void bestCaseInsertion(){
 
-            int i = 1;
-            List list = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
-            List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+        System.out.println("best");
+            List list = integerDataSetGenerator.createAscending(length);
+            List toCompare = integerDataSetGenerator.createAscending(length);
 
             insertionSorter.sort(comparator,list);
 
@@ -37,9 +40,9 @@ public class SorterCasesTest {
 
     @Test
     public void worstCaseInsertion(){
-        int i = 1;
-        List list = integerDataSetGenerator.createDescending((int) Math.pow(10,i));
-        List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+        System.out.println("worst");
+        List list = integerDataSetGenerator.createDescending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
 
         insertionSorter.sort(comparator,list);
 
@@ -49,10 +52,10 @@ public class SorterCasesTest {
     @Test
     public void averageCaseInsertion(){
 
-        int i = 1;
-        List list = integerDataSetGenerator.createRandom((int) Math.pow(10,i));
-        //Revisar el insertion sorter
-        insertionSorter.sort(comparator,list);
+        System.out.println("average");
+        List list = integerDataSetGenerator.createRandom(length);
+
+        insertionSorter .sort(comparator,list);
 
 
     }
@@ -60,9 +63,9 @@ public class SorterCasesTest {
     @Test
     public void bestCaseBubble(){
 
-        int i = 1;
-        List list = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
-        List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+        System.out.println("best");
+        List list = integerDataSetGenerator.createAscending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
 
         bubbleSorter.sort(comparator,list);
 
@@ -72,9 +75,9 @@ public class SorterCasesTest {
 
     @Test
     public void worstCaseBubble(){
-        int i = 1;
-        List list = integerDataSetGenerator.createDescending((int) Math.pow(10,i));
-        List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+        System.out.println("worst");
+        List list = integerDataSetGenerator.createDescending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
 
         bubbleSorter.sort(comparator,list);
 
@@ -83,10 +86,9 @@ public class SorterCasesTest {
 
     @Test
     public void averageCaseBubble(){
+    System.out.println("average");
 
-        int i = 1;
-        List list = integerDataSetGenerator.createRandom((int) Math.pow(10,i));
-        //Revisar el bubble sorter
+        List list = integerDataSetGenerator.createRandom(length);
         bubbleSorter.sort(comparator,list);
 
 
@@ -95,9 +97,9 @@ public class SorterCasesTest {
     @Test
     public void bestCaseSelection(){
 
-        int i = 1;
-        List list = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
-        List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+        System.out.println("best");
+        List list = integerDataSetGenerator.createAscending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
 
         selectionSorter.sort(comparator,list);
 
@@ -107,9 +109,9 @@ public class SorterCasesTest {
 
     @Test
     public void worstCaseSelection(){
-        int i = 1;
-        List list = integerDataSetGenerator.createDescending((int) Math.pow(10,i));
-        List toCompare = integerDataSetGenerator.createAscending((int) Math.pow(10,i));
+      System.out.println("worst");
+        List list = integerDataSetGenerator.createDescending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
 
         selectionSorter.sort(comparator,list);
 
@@ -118,10 +120,8 @@ public class SorterCasesTest {
 
     @Test
     public void averageCaseSlection(){
-
-        int i = 1;
-        List list = integerDataSetGenerator.createRandom((int) Math.pow(10,i));
-        //Revisar el selection sorter
+        System.out.println("average");
+        List list = integerDataSetGenerator.createRandom(length);
         selectionSorter.sort(comparator,list);
 
 
