@@ -14,6 +14,8 @@ public class FullNameTest {
     private final BubbleSorter bubbleSorter = new BubbleSorter();
     private final SelectionSorter selectionSorter = new SelectionSorter();
     private final InsertionSorter insertionSorter = new InsertionSorter();
+    private final FullNameComparator comparator = new FullNameComparator();
+    private final FullNameSorter fullNameSorter = new FullNameSorter();
 
     public void generateDefaultLists(){
         names.add(new FullName("Paula","Alonso"));
@@ -40,14 +42,7 @@ public class FullNameTest {
     @Test
     public void defaultNamesBubbleTest(){
         generateDefaultLists();
-        bubbleSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        bubbleSorter.sort(comparator, names);
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
         }
@@ -58,14 +53,7 @@ public class FullNameTest {
     @Test
     public void defaultNamesSelectionTest(){
         generateDefaultLists();
-        selectionSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        selectionSorter.sort(comparator, names);
 
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
@@ -77,14 +65,7 @@ public class FullNameTest {
     @Test
     public void defaultNamesInsertionTest(){
         generateDefaultLists();
-        insertionSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        insertionSorter.sort(comparator, names);
 
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
@@ -97,14 +78,7 @@ public class FullNameTest {
     @Test
     public void worstCaseBubbleTest(){
         generateWorstCaseList();
-        bubbleSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        bubbleSorter.sort(comparator, names);
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
         }
@@ -116,14 +90,7 @@ public class FullNameTest {
     @Test
     public void worstCaseSelectionTest(){
         generateWorstCaseList();
-        selectionSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        selectionSorter.sort(comparator, names);
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
         }
@@ -135,14 +102,31 @@ public class FullNameTest {
     @Test
     public void worstCaseInsertionTest(){
         generateWorstCaseList();
-        insertionSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                int value = o1.getLastName().compareTo(o2.getLastName());
-                if (value != 0) return value;
-                else return o1.getFirstName().compareTo(o2.getFirstName());
-            }
-        }, names);
+        insertionSorter.sort(comparator, names);
+        for (int i = 0; i < names.size(); i++) {
+            Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
+        }
+
+        names.clear();
+        sortedNames.clear();
+    }
+
+    @Test
+    public void fullnameSorterDefaultCase(){
+        generateDefaultLists();
+        fullNameSorter.sort(comparator, names);
+        for (int i = 0; i < names.size(); i++) {
+            Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
+        }
+
+        names.clear();
+        sortedNames.clear();
+    }
+
+    @Test
+    public void fullnameSorterWorstCase(){
+        generateWorstCaseList();
+        fullNameSorter.sort(comparator, names);
         for (int i = 0; i < names.size(); i++) {
             Assert.assertTrue(names.get(i).equals(sortedNames.get(i)));
         }
