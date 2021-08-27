@@ -9,6 +9,7 @@ public class SelectionSorter extends AbstractSorter{
 
     public SelectionSorter(){
         super(SorterType.SELECTION);
+        addSorterListener(new SorterListener());
     }
 
     @Override

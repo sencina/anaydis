@@ -9,6 +9,7 @@ public class BubbleSorter extends AbstractSorter{
 
     public BubbleSorter() {
         super(SorterType.BUBBLE);
+        addSorterListener(new SorterListener());
     }
 
     @Override

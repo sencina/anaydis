@@ -18,112 +18,113 @@ public class SorterCasesTest {
     private final Comparator<Integer> comparator = new Comparator<Integer>() {
         @Override
         public int compare(Integer o1, Integer o2) {
-            return Integer.compare(o1,o2);
+            return Integer.compare(o1, o2);
         }
     };
 
 
-    private int length = (int) Math.pow(10,1)*1;
+    private int length = (int) Math.pow(10, 1) * 1;
 
     @Test
-    public void bestCaseInsertion(){
-
-        System.out.println("best");
-            List list = integerDataSetGenerator.createAscending(length);
-            List toCompare = integerDataSetGenerator.createAscending(length);
-
-            insertionSorter.sort(comparator,list);
-
-            Assert.assertTrue(list.equals(toCompare));
-
-    }
-
-    @Test
-    public void worstCaseInsertion(){
-        System.out.println("worst");
-        List list = integerDataSetGenerator.createDescending(length);
-        List toCompare = integerDataSetGenerator.createAscending(length);
-
-        insertionSorter.sort(comparator,list);
-
-        Assert.assertTrue(list.equals(toCompare));
-    }
-
-    @Test
-    public void averageCaseInsertion(){
-
-        System.out.println("average");
-        List list = integerDataSetGenerator.createRandom(length);
-
-        insertionSorter .sort(comparator,list);
-
-
-    }
-
-    @Test
-    public void bestCaseBubble(){
+    public void bestCaseInsertion() {
 
         System.out.println("best");
         List list = integerDataSetGenerator.createAscending(length);
         List toCompare = integerDataSetGenerator.createAscending(length);
 
-        bubbleSorter.sort(comparator,list);
+        insertionSorter.sort(comparator, list);
 
         Assert.assertTrue(list.equals(toCompare));
 
     }
 
     @Test
-    public void worstCaseBubble(){
+    public void worstCaseInsertion() {
         System.out.println("worst");
         List list = integerDataSetGenerator.createDescending(length);
         List toCompare = integerDataSetGenerator.createAscending(length);
 
-        bubbleSorter.sort(comparator,list);
+        insertionSorter.sort(comparator, list);
 
         Assert.assertTrue(list.equals(toCompare));
     }
 
     @Test
-    public void averageCaseBubble(){
-    System.out.println("average");
+    public void averageCaseInsertion() {
 
+        System.out.println("average");
         List list = integerDataSetGenerator.createRandom(length);
-        bubbleSorter.sort(comparator,list);
+
+        insertionSorter.sort(comparator, list);
 
 
     }
 
     @Test
-    public void bestCaseSelection(){
+    public void bestCaseBubble() {
 
         System.out.println("best");
         List list = integerDataSetGenerator.createAscending(length);
         List toCompare = integerDataSetGenerator.createAscending(length);
 
-        selectionSorter.sort(comparator,list);
+        bubbleSorter.sort(comparator, list);
 
         Assert.assertTrue(list.equals(toCompare));
 
     }
 
     @Test
-    public void worstCaseSelection(){
-      System.out.println("worst");
+    public void worstCaseBubble() {
+        System.out.println("worst");
         List list = integerDataSetGenerator.createDescending(length);
         List toCompare = integerDataSetGenerator.createAscending(length);
 
-        selectionSorter.sort(comparator,list);
+        bubbleSorter.sort(comparator, list);
 
         Assert.assertTrue(list.equals(toCompare));
     }
 
     @Test
-    public void averageCaseSlection(){
+    public void averageCaseBubble() {
+        System.out.println("average");
+
+        List list = integerDataSetGenerator.createRandom(length);
+        bubbleSorter.sort(comparator, list);
+
+
+    }
+
+    @Test
+    public void bestCaseSelection() {
+
+        System.out.println("best");
+        List list = integerDataSetGenerator.createAscending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
+
+        selectionSorter.sort(comparator, list);
+
+        Assert.assertTrue(list.equals(toCompare));
+
+    }
+
+    @Test
+    public void worstCaseSelection() {
+        System.out.println("worst");
+        List list = integerDataSetGenerator.createDescending(length);
+        List toCompare = integerDataSetGenerator.createAscending(length);
+
+        selectionSorter.sort(comparator, list);
+
+        Assert.assertTrue(list.equals(toCompare));
+    }
+
+    @Test
+    public void averageCaseSlection() {
         System.out.println("average");
         List list = integerDataSetGenerator.createRandom(length);
-        selectionSorter.sort(comparator,list);
-
-
+        selectionSorter.sort(comparator, list);
     }
 }
+
+
+

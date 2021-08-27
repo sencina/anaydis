@@ -13,6 +13,9 @@ public class SorterProviderImplementation implements SorterProvider{
         sorters.put(SorterType.SELECTION,new SelectionSorter());
         sorters.put(SorterType.INSERTION,new InsertionSorter());
         sorters.put(SorterType.BUBBLE,new BubbleSorter());
+        sorters.put(SorterType.QUICK,new QuickSorter());
+        sorters.put(SorterType.H,new HSorter());
+        sorters.put(SorterType.SHELL,new ShellSorter());
     }
 
     @Override

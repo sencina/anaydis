@@ -9,6 +9,7 @@ public class InsertionSorter extends AbstractSorter{
 
     public InsertionSorter() {
         super(SorterType.INSERTION);
+        addSorterListener(new SorterListener());
     }
 
     @Override
@@ -25,4 +26,6 @@ public class InsertionSorter extends AbstractSorter{
         }
 
     }
+
+
 }
