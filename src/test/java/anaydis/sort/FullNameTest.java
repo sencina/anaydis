@@ -1,10 +1,11 @@
 package anaydis.sort;
 
+import anaydis.sort.auxClass.FullName;
+import anaydis.sort.comparator.FullNameComparator;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class FullNameTest {

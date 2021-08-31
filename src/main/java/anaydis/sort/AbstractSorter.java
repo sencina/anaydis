@@ -14,7 +14,7 @@ import java.util.List;
 abstract class AbstractSorter implements ObservableSorter {
 
     private final SorterType type;
-    private final List<SorterListener> listeners;
+    private final List<SorterListenerImplementation> listeners;
 
     AbstractSorter(SorterType type){
         this.type = type;
@@ -41,13 +41,22 @@ abstract class AbstractSorter implements ObservableSorter {
     }
 
 
-    @Override
-    public void addSorterListener(@NotNull SorterListener listener) {
-        listeners.add(listener);
-    }
+
 
     @Override
     public void removeSorterListener(@NotNull SorterListener listener) {
         listeners.remove(listener);
+    }
+
+
+
+    @Override
+    public void addSorterListener(@NotNull SorterListener listener) {
+        listeners.add((SorterListenerImplementation) listener);
+
+    }
+
+    public List<SorterListenerImplementation> getListeners() {
+        return listeners;
     }
 }

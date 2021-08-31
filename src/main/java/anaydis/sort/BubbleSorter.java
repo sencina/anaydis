@@ -1,5 +1,6 @@
 package anaydis.sort;
 
+import anaydis.sort.gui.SorterListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
@@ -9,7 +10,7 @@ public class BubbleSorter extends AbstractSorter{
 
     public BubbleSorter() {
         super(SorterType.BUBBLE);
-        addSorterListener(new SorterListener());
+        addSorterListener(new SorterListenerImplementation());
     }
 
     @Override
@@ -26,4 +27,5 @@ public class BubbleSorter extends AbstractSorter{
         }
 
     }
+
 }

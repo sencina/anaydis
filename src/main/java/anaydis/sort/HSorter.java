@@ -1,7 +1,5 @@
 package anaydis.sort;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Comparator;
 import java.util.List;
 
@@ -10,7 +8,7 @@ public class HSorter extends AbstractSorter{
 
     public HSorter() {
         super(SorterType.H);
-        addSorterListener(new SorterListener());
+        addSorterListener(new SorterListenerImplementation());
     }
 
     public <T> void sort(Comparator<T> comparator, List<T> list){

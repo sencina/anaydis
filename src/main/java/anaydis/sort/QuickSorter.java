@@ -9,7 +9,7 @@ public class QuickSorter extends AbstractSorter{
 
     public QuickSorter() {
         super(SorterType.QUICK);
-        addSorterListener(new SorterListener());
+        addSorterListener(new SorterListenerImplementation());
     }
 
     @Override

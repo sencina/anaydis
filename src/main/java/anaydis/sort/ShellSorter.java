@@ -8,53 +8,29 @@ import java.util.List;
 
 public class ShellSorter extends AbstractSorter{
 
-    private List<Integer> hValues;
+    private int[] hValues;
     private final HSorter sorter;
 
     public ShellSorter() {
         super(SorterType.SHELL);
-        this.hValues = new ArrayList<>();
+        //this.hValues = new int[]{1, 4, 13, 40, 121, 364, 1093, 3280, 9841};
+        this.hValues = new int[]{1, 8, 23, 77, 281, 1073, 4193, 16577};
         this.sorter = new HSorter();
-        hValues.add(1);//8 23 77 281 1073 4193 16577
-        hValues.add(8);//8 23 77 281 1073 4193 16577
-        hValues.add(23);//8 23 77 281 1073 4193 16577
-        hValues.add(77);//8 23 77 281 1073 4193 16577
-        hValues.add(281);//8 23 77 281 1073 4193 16577
-        hValues.add(1073);//8 23 77 281 1073 4193 16577
-        hValues.add(4193);//8 23 77 281 1073 4193 16577
-        hValues.add(16577);//8 23 77 281 1073 4193 16577
+        addSorterListener(new SorterListenerImplementation());
+
 
     }
 
     @Override
     public <T> void sort(@NotNull Comparator<T> comparator, @NotNull List<T> list) {
-        int i = hValues.size()-1;
+        int i = hValues.length-1;
 
         while (i >=0){
-            sorter.sort(comparator,list,hValues.get(i));
+            sorter.sort(comparator,list,hValues[i]);
             --i;
         }
     }
 
-    private int initialHsearch(int l, int r, int x) {
-        if (r >= l) {
-            int mid = l + (r - l) / 2;
-
-            if (hValues.get(mid) <= x) return mid;
-
-
-            if (hValues.get(mid) > x) return initialHsearch( l, mid - 1, x);
-
-            return initialHsearch( mid + 1, r, x);
-        }
-
-
-        return hValues.get(hValues.size()-1);
-    }
-
-    public void sethValues(List<Integer> hValues) {
-        this.hValues = hValues;
-    }
 
     public HSorter getSorter() {
         return sorter;

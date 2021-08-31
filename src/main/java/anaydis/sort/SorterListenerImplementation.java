@@ -1,11 +1,13 @@
 package anaydis.sort;
 
-public class SorterListener implements anaydis.sort.gui.SorterListener {
+import anaydis.sort.gui.SorterListener;
+
+public class SorterListenerImplementation implements SorterListener {
 
     private int comparations;
     private int swaps;
 
-    public SorterListener() {
+    public SorterListenerImplementation() {
         this.comparations = 0;
         this.swaps = 0;
     }
@@ -38,5 +40,13 @@ public class SorterListener implements anaydis.sort.gui.SorterListener {
     public void reset(){
         this.swaps = 0;
         this.comparations = 0;
+    }
+
+    public int getComparations() {
+        return comparations;
+    }
+
+    public int getSwaps() {
+        return swaps;
     }
 }

@@ -1,11 +1,12 @@
-package anaydis.sort;
+package anaydis.sort.auxClass;
 
+import anaydis.sort.*;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-public class SorterProviderImplementation implements SorterProvider{
+public class SorterProviderImplementation implements SorterProvider {
 
     private final Map<SorterType, Sorter> sorters = new EnumMap<>(SorterType.class);
 

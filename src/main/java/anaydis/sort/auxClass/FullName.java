@@ -1,6 +1,4 @@
-package anaydis.sort;
-
-import org.jetbrains.annotations.NotNull;
+package anaydis.sort.auxClass;
 
 import java.util.Objects;
 
@@ -30,6 +28,9 @@ public class FullName {
         return Objects.equals(firstName, fullName.firstName) && Objects.equals(lastName, fullName.lastName);
     }
 
-
+    @Override
+    public String toString() {
+        return firstName+','+lastName;
+    }
 }
 
