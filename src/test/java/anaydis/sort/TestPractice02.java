@@ -96,5 +96,19 @@ public class TestPractice02 extends SorterTest {
 
     }
 
+    /** Test QuickSorter with String generator. */
+    @Test public void testQuickNonRecursiveWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
+    }
+
+    /** Test QuickSorter with Integer generator. */
+    @Test public void testQuickNonRecursiveWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
+    }
+
 
 }

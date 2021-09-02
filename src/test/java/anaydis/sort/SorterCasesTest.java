@@ -129,57 +129,7 @@ public class SorterCasesTest {
         List list = integerDataSetGenerator.createRandom(length);
         selectionSorter.sort(comparator, list);
     }
-
-    @Test
-    public void shellSorterTest(){
-        int[] sizes = {100,1000,10000};
-        System.out.println("n,list,type,comparations,exchanges");
-
-        for (int i = 0; i < sizes.length; i++) {
-            List<Integer> ascending = integerDataSetGenerator.createAscending(sizes[i]);
-            List<Integer> descending = integerDataSetGenerator.createDescending(sizes[i]);
-            List<Integer> random = integerDataSetGenerator.createRandom(sizes[i]);
-
-            shellSorter.sort(comparator,ascending);
-            System.out.println(sizes[i]+",ascending,"+shellSorter.getType()+','+shellSorter.getSorter().getListeners().get(0).getComparations()+','+shellSorter.getSorter().getListeners().get(0).getSwaps());
-            shellSorter.getSorter().getListeners().get(0).reset();
-
-            shellSorter.sort(comparator,descending);
-            System.out.println(sizes[i]+",descending,"+shellSorter.getType()+','+shellSorter.getSorter().getListeners().get(0).getComparations()+','+shellSorter.getSorter().getListeners().get(0).getSwaps());
-            shellSorter.getSorter().getListeners().get(0).reset();
-
-            shellSorter.sort(comparator,random);
-            System.out.println(sizes[i]+",random,"+shellSorter.getType()+','+shellSorter.getSorter().getListeners().get(0).getComparations()+','+shellSorter.getSorter().getListeners().get(0).getSwaps());
-            shellSorter.getSorter().getListeners().get(0).reset();
-
-
-        }
-
-    }
-
-    @Test
-    public void shellSortEstableTest(){
-        List<FullName> names = new ArrayList<>();
-        List<FullName> sortedNames = new ArrayList<>();
-        names.add(new FullName("Santiago","Encina"));
-        names.add(new FullName("Juan Martin","Encina"));
-        names.add(new FullName("Franciso","Encina"));
-        names.add(new FullName("Martina","Encina"));
-        names.add(new FullName("Maria Eugenia","Budic"));
-
-
-
-        quickSorter.sort(new Comparator<FullName>() {
-            @Override
-            public int compare(FullName o1, FullName o2) {
-                return o1.getLastName().compareTo(o2.getLastName());
-            }
-        },names);
-
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println(names.get(i).toString());
-        }
-    }
+    
 }
 
 
