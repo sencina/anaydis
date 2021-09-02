@@ -96,18 +96,60 @@ public class TestPractice02 extends SorterTest {
 
     }
 
-    /** Test QuickSorter with String generator. */
+    /** Test QuickNonRecursiveSorter with String generator. */
     @Test public void testQuickNonRecursiveWithStringGenerator() {
         testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
         testSorter(createStringDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
     }
 
-    /** Test QuickSorter with Integer generator. */
+    /** Test QuickNonRecursiveSorter with Integer generator. */
     @Test public void testQuickNonRecursiveWithIntegerGenerator() {
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 10);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 50);
         testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_NON_RECURSIVE, 100);
+    }
+
+    /** Test QuickCut with String generator. */
+    @Test public void testQuickCutWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_CUT, 100);
+    }
+
+    /** Test QuickCutSorter with Integer generator. */
+    @Test public void testQuickCutWithIntegerGenerator() {
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_CUT, 100);
+    }
+
+    /** Test QuickMedOf3 with String generator. */
+    @Test public void testQuickMedOf3WithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
+    }
+
+    /** Test QuickMedOf3 with Integer generator. */
+    @Test public void testQuickMedOf3WithIntegerGenerator(){
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_MED_OF_THREE, 100);
+    }
+
+    /** Test QuickThreePartition with String generator. */
+    @Test public void testQuickThreePartitionWithStringGenerator() {
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 10);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 50);
+        testSorter(createStringDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 100);
+    }
+
+    /** Test QuickThreePartition with Integer generator. */
+    @Test public void testQuickThreePartitionWithIntegerGenerator(){
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 10);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 50);
+        testSorter(createIntegerDataSetGenerator(), SorterType.QUICK_THREE_PARTITION, 100);
     }
 
 

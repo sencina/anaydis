@@ -12,7 +12,7 @@ public abstract class  AbstractQuick extends AbstractSorter{
         super(type);
     }
 
-    <T> int partition(@NotNull Comparator<T> comparator, @NotNull List<T> list, int lo, int hi){
+   protected  <T> int partition(@NotNull Comparator<T> comparator, @NotNull List<T> list, int lo, int hi){
         int i = lo - 1;
         int j = hi;
         while(true) {

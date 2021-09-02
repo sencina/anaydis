@@ -1,4 +1,4 @@
-package anaydis.sort;
+package anaydis.sort.auxClass;
 
 import anaydis.sort.gui.SorterListener;
 

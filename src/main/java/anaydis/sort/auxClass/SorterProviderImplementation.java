@@ -18,6 +18,9 @@ public class SorterProviderImplementation implements SorterProvider {
         sorters.put(SorterType.H,new HSorter());
         sorters.put(SorterType.SHELL,new ShellSorter());
         sorters.put(SorterType.QUICK_NON_RECURSIVE,new QuickSorterNonRecursive());
+        sorters.put(SorterType.QUICK_CUT,new QuickCutSorter());
+        sorters.put(SorterType.QUICK_MED_OF_THREE,new QuickSorterMedOfThree());
+        sorters.put(SorterType.QUICK_THREE_PARTITION,new QuickSorterThreePartition());
     }
 
     @Override

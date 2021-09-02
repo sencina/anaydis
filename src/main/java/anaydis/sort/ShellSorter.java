@@ -1,8 +1,8 @@
 package anaydis.sort;
 
+import anaydis.sort.auxClass.SorterListenerImplementation;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
