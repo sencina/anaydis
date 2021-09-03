@@ -25,9 +25,9 @@ public class QuickSorterThreePartition extends AbstractQuick{
         T pivot = list.get(lo);
         int i = lo+1;int p=lo;int q =hi;
         while(i<=q){
-            if (less(comparator,list.get(i),pivot))swap(list,p++,i++);
+            if (less(comparator,pivot,list.get(i)))swap(list,i,q--);
             else if (equals(comparator,pivot,list.get(i))) i++;
-            else swap(list,i,q--);
+            else swap(list,p++,i++);
         }
         sort(comparator,list,lo,p-1);
         sort(comparator,list,q+1,hi);
