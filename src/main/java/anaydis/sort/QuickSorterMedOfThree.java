@@ -9,7 +9,7 @@ import java.util.List;
 
 public class QuickSorterMedOfThree extends AbstractQuick{
 
-    private static int m = 15;
+    private static int m = 17;
 
     public QuickSorterMedOfThree() {
         super(SorterType.QUICK_MED_OF_THREE);

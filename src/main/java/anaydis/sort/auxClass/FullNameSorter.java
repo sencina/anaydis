@@ -1,5 +1,6 @@
-package anaydis.sort;
+package anaydis.sort.auxClass;
 
+import anaydis.sort.InsertionSorter;
 import anaydis.sort.auxClass.FullName;
 
 import java.util.Comparator;

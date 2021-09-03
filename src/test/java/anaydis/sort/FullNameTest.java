@@ -1,6 +1,7 @@
 package anaydis.sort;
 
 import anaydis.sort.auxClass.FullName;
+import anaydis.sort.auxClass.FullNameSorter;
 import anaydis.sort.comparator.FullNameComparator;
 import org.junit.Assert;
 import org.junit.Test;

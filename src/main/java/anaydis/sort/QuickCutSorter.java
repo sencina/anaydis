@@ -9,7 +9,7 @@ import java.util.List;
 public class QuickCutSorter extends AbstractQuick {
 
 
-    private static int m = 15;
+    private static int m = 17;//lo probe empiricamente haciendo cuatro corridas para la misma lista aleatoria por cada size, y de ahi saque el que mas veces fue el mejor.
 
     public QuickCutSorter() {
         super(SorterType.QUICK_CUT);
