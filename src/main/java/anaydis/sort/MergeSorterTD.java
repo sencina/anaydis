@@ -1,5 +1,6 @@
 package anaydis.sort;
 
+import anaydis.sort.auxClass.SorterListenerImplementation;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Comparator;
@@ -10,6 +11,7 @@ public class MergeSorterTD extends AbstractMerge{
 
     public MergeSorterTD() {
         super(SorterType.MERGE_TOP_DOWN);
+        getListeners().add(new SorterListenerImplementation());
     }
 
     @Override

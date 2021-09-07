@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Abstract sorter: all sorter implementations should subclass this class.
  */
-abstract class AbstractSorter implements ObservableSorter {
+public abstract class AbstractSorter implements ObservableSorter {
 
     private final SorterType type;
     private final List<SorterListenerImplementation> listeners;

@@ -18,13 +18,13 @@ public abstract class AbstractMerge extends AbstractSorter{
         List<T> aux = new ArrayList<>(list.size());
 
         for (int i = low; i <= middle; i++) {
-            copy(aux, i, list, i);
+            aux.add(list.get(i));
         }
-        for (int j = middle + 1; j <= high; j++) {
-            copy(aux, high + (middle + 1) - j, list, j);
+        for (int j = high; j > middle; j--) {
+            aux.add(list.get(j));
         }
-        list.clear();
-        for (int k = low, i = low, j = high; k <= high; k++) {
+
+        for (int k = low, i = 0, j = aux.size()-1; k <= high; k++) {
             if(greater(comparator,aux, i, j)) {
                 copy(list, k, aux, j--);
             } else {
