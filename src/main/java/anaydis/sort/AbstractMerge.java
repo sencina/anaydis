@@ -15,7 +15,7 @@ public abstract class AbstractMerge extends AbstractSorter{
 
     protected <T> void merge(Comparator<T> comparator, @NotNull List<T> list, int low, int middle, int high) {
 
-        List<T> aux = new ArrayList<>(list.size());
+        List<T> aux = new ArrayList<>(high-low+1);
 
         for (int i = low; i <= middle; i++) {
             aux.add(list.get(i));
