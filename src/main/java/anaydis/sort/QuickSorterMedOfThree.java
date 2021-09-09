@@ -54,13 +54,5 @@ public class QuickSorterMedOfThree extends AbstractQuick{
     }
 
 
-    private <T> void comExch(Comparator<T> comparator, List<T> list, int[] a, int lo, int hi){
-        if (greater(comparator,list,lo,hi)){
-            int aux = a[lo];
-            a[lo] = a[hi];
-            a[hi] = a[lo];
-        }
-    }
-
 
 }
