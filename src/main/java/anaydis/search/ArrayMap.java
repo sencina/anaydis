@@ -52,7 +52,7 @@ public class ArrayMap<K,V> implements Map<K,V> {
                 keys.set(i,keys.get(i-1));
                 values.set(i,values.get(i-1));
             }
-            keys.set(index,key);
+            keys.add(index,key);
         }
         size++;
         values.set(index,value);
