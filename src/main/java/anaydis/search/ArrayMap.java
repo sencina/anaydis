@@ -54,6 +54,7 @@ public class ArrayMap<K,V> implements Map<K,V> {
             }
             keys.set(index,key);
         }
+        size++;
         values.set(index,value);
         return value;
     }
