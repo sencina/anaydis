@@ -24,7 +24,7 @@ public class SorterListenerImplementation implements SorterListener {
 
     @Override
     public void equals(int i, int j) {
-
+        comparations++;
     }
 
     @Override

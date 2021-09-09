@@ -35,6 +35,9 @@ public abstract class AbstractSorter implements ObservableSorter {
          }
         return comparator.compare(list.get(i), list.get(j))>0;
     }
+
+
+
     <T> boolean equals(Comparator<T> comparator, List<T> list, int i, int j) {
          for (int k = 0; k < listeners.size(); k++) {
              listeners.get(k).equals(i,j);
