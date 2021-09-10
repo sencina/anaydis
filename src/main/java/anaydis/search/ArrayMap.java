@@ -11,18 +11,17 @@ public class ArrayMap<K,V> implements Map<K,V> {
     private final Comparator<K> comparator;
     private final ArrayList<K> keys;
     private final ArrayList<V> values;
-    private int size;
+
 
     public ArrayMap(Comparator<K> comparator) {
         this.keys = new ArrayList<>();
         this.values = new ArrayList<>();
-        this.size = 0;
         this.comparator = comparator;
     }
 
     @Override
     public int size() {
-        return this.size;
+        return keys.size();
     }
 
     @Override
@@ -46,19 +45,18 @@ public class ArrayMap<K,V> implements Map<K,V> {
     public V put(@NotNull K key, V value) {
         int index = indexOf(key);
         if (index<0){
-            index = -index -1;
+            index = (-index) -1;
 
             keys.add(null);
             values.add(null);
 
-            for (int i = size-1; i<index; i--) {
+            for (int i = size()-1; i>index; i--) {
                 keys.set(i,keys.get(i-1));
                 values.set(i,values.get(i-1));
             }
             keys.set(index,key);
             values.set(index,value);
         }
-        size++;
         return values.set(index,value);
 
     }
@@ -75,7 +73,7 @@ public class ArrayMap<K,V> implements Map<K,V> {
     }
 
     private int indexOf(K key){
-        return find(key,0,size-1);
+        return find(key,0,size()-1);
     }
 
     private int find(K key, int lo, int hi){
