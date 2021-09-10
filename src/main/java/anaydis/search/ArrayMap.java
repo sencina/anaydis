@@ -2,16 +2,15 @@ package anaydis.search;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
 public class ArrayMap<K,V> implements Map<K,V> {
 
-    private Comparator<K> comparator;
-    private ArrayList<K> keys;
-    private ArrayList<V> values;
+    private final Comparator<K> comparator;
+    private final ArrayList<K> keys;
+    private final ArrayList<V> values;
     private int size;
 
     public ArrayMap(Comparator<K> comparator) {
@@ -48,14 +47,18 @@ public class ArrayMap<K,V> implements Map<K,V> {
         int index = indexOf(key);
         if (index<0){
             index = -index -1;
+
+            keys.add(null);
+            values.add(null);
+
             for (int i = index+1; i < size+1; i++) {
                 keys.add(i,keys.get(i-1));
                 values.add(i,values.get(i-1));
             }
-            keys.add(index,key);
         }
         size++;
-        values.add(index,value);
+        keys.set(index,key);
+        values.set(index,value);
         return value;
     }
 
