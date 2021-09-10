@@ -52,8 +52,8 @@ public class ArrayMap<K,V> implements Map<K,V> {
             values.add(null);
 
             for (int i = index+1; i < size+1; i++) {
-                keys.add(i,keys.get(i-1));
-                values.add(i,values.get(i-1));
+                keys.set(i,keys.get(i-1));
+                values.set(i,values.get(i-1));
             }
             keys.set(index,key);
             values.set(index,value);
