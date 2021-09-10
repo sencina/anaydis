@@ -93,7 +93,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     }
 
     private Node<K,V> put(Node<K,V> node, @NotNull K key, V value){
-        if (node == null){
+        if (node == null || node.key == null){
             size++;
             return new Node<>(key,value);
         }
