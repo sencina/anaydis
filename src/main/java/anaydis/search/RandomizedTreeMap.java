@@ -71,7 +71,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         fillList(list,node.right);
     }
 
-    private Node<K,V> rootPut(Node<K,V> node,K key, V value){
+    private Node<K,V> rootPut(Node<K,V> node,@NotNull K key, V value){
 
         if (node == null){
             size++;
@@ -92,7 +92,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         }
     }
 
-    private Node<K,V> put(Node<K,V> node, K key, V value){
+    private Node<K,V> put(Node<K,V> node, @NotNull K key, V value){
         if (node == null){
             size++;
             return new Node<>(key,value);
