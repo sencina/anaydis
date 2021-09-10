@@ -66,16 +66,17 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     private void fillList(List<K> list, Node<K,V> node) {
         if (node == null) return;
-        list.add(node.key);
         fillList(list,node.left);
+        list.add(head.key);
         fillList(list,node.right);
+
     }
 
     private Node<K,V> rootPut(Node<K,V> node,@NotNull K key, V value){
 
         if (node == null || node.key == null){
             size++;
-            return new Node<>(key,value);
+            return new Node<K,V>(key,value);
         }
 
         else {
@@ -106,11 +107,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         return node;
     }
 
-    private Node<K,V> find(Node<K,V> node, K key){
+    private Node<K,V> find(Node<K,V> node, @NotNull K key){
         if (node == null || node.key == null) return null;
-        int comp = comparator.compare(node.key,key);
-        if (comp > 0) return find(node.left,key);
-        else if (comp < 0) return find(node.right,key);
+        int comp = comparator.compare(key,node.key);
+        if (comp > 0) return find(node.right,key);
+        else if (comp < 0) return find(node.left,key);
         else return node;
     }
 
