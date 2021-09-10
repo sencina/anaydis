@@ -7,17 +7,18 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 
-public class ArrayMap<K extends Comparable<K>,V> implements Map<K,V> {
+public class ArrayMap<K,V> implements Map<K,V> {
 
-
+    private Comparator<K> comparator;
     private ArrayList<K> keys;
     private ArrayList<V> values;
     private int size;
 
-    public ArrayMap() {
+    public ArrayMap(Comparator<K> comparator) {
         this.keys = new ArrayList<>();
         this.values = new ArrayList<>();
         this.size = 0;
+        this.comparator = comparator;
     }
 
     @Override
@@ -77,7 +78,7 @@ public class ArrayMap<K extends Comparable<K>,V> implements Map<K,V> {
 
         if (hi<lo) return -(lo+1);
         int middle = (hi+lo)/2;
-        int comp = key.compareTo(keys.get(middle));
+        int comp = comparator.compare(key,keys.get(middle));
 
         if (comp<0) return find(key,lo,middle-1);
         else if (comp>0) return find(key,middle+1,hi);
