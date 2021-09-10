@@ -3,9 +3,7 @@ package anaydis.search;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 
 public class RandomizedTreeMap<K,V> implements Map<K,V> {
@@ -54,11 +52,21 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     @Override
     public void clear() {
         this.head = null;
+        this.size = 0;
     }
 
     @Override
     public Iterator<K> keys() {
-        return null;
+        List<K> toReturn = new ArrayList<>();
+        fillList(toReturn,head);
+        return toReturn.iterator();
+    }
+
+    private void fillList(List<K> list, Node<K,V> node) {
+        if (node == null) return;
+        list.add(node.key);
+        fillList(list,node.left);
+        fillList(list,node.right);
     }
 
     private Node<K,V> rootPut(Node<K,V> node,K key, V value){
@@ -73,10 +81,10 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
             if (comp<0){
                 node.left = rootPut(node.left,key,value);
-                rotateRight(node);}
+                return rotateRight(node);}
             else if (comp>0){
                 node.right = rootPut(node.right,key,value);
-                rotateLeft(node);}
+                return rotateLeft(node);}
             else previousValue = node.value;node.value = value;return node;
         }
     }
@@ -115,10 +123,17 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         }
 
         public Node(K key, V value) {
+            new Node<>(key,value,null,null);
+        }
+        public Node(K key, V value, Node<K, V> left, Node<K,V> right) {
             this.key = key;
             this.value = value;
-            this.left = null;
-            this.right = null;
+            this.left = left;
+            this.right = right;
+        }
+
+        public Node<K,V> copy() {
+            return new Node<>(this.key,this.value,this.left,this.right);
         }
     }
 
@@ -130,9 +145,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     }
 
     private Node<K,V> rotateRight(Node<K,V> node){
-        Node<K,V> toReturn = node.left;
+        Node<K,V> toReturn = node.left.copy();
         node.left = node.right;
         toReturn.right = node;
         return toReturn;
     }
+
+
 }

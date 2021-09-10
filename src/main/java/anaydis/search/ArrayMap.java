@@ -3,14 +3,15 @@ package anaydis.search;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
 import java.util.Iterator;
 
 public class ArrayMap<K,V> implements Map<K,V> {
 
     private final Comparator<K> comparator;
-    private final ArrayList<K> keys;
-    private final ArrayList<V> values;
+    private final List<K> keys;
+    private final List<V> values;
 
 
     public ArrayMap(Comparator<K> comparator) {
