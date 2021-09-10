@@ -141,7 +141,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     }
 
     private Node<K,V> rotateLeft(Node<K,V> node){
-        Node<K,V> toReturn = node.right;
+        Node<K,V> toReturn = node.right.copy();
         node.right = node.left;
         toReturn.left = node;
         return toReturn;
