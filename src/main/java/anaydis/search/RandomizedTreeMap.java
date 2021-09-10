@@ -107,7 +107,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     }
 
     private Node<K,V> find(Node<K,V> node, K key){
-        if (node == null) return null;
+        if (node == null || node.key == null) return null;
         int comp = comparator.compare(node.key,key);
         if (comp > 0) return find(node.left,key);
         else if (comp < 0) return find(node.right,key);
