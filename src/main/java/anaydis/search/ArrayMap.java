@@ -55,11 +55,12 @@ public class ArrayMap<K,V> implements Map<K,V> {
                 keys.add(i,keys.get(i-1));
                 values.add(i,values.get(i-1));
             }
+            keys.set(index,key);
+            values.set(index,value);
         }
         size++;
-        keys.set(index,key);
-        values.set(index,value);
-        return value;
+        return values.set(index,value);
+
     }
 
     @Override
