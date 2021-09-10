@@ -34,7 +34,9 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     @Override
     public V get(@NotNull K key) {
+
         Node<K,V> toReturn = find(head,key);
+        if (toReturn == null) return null;
         return toReturn.value;
     }
 
@@ -77,6 +79,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         }
 
         else {
+
             int comp = comparator.compare(key, node.key);
 
             if (comp<0){
