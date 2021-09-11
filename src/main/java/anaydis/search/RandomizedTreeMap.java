@@ -121,8 +121,8 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
         private K key;
         private V value;
-        private Node<K,V> left;
-        private Node<K,V> right;
+        private Node<K,V> left = null;
+        private Node<K,V> right = null;
 
         public Node() {
             new Node<>(null,null);
