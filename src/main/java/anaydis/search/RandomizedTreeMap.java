@@ -60,16 +60,18 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
     @Override
     public Iterator<K> keys() {
         List<K> toReturn = new ArrayList<>();
-        fillList(toReturn,head);
+        if(head != null) {
+            fillList(toReturn, head);
+        }
         return toReturn.iterator();
     }
 
     private void fillList(List<K> list, Node<K,V> node) {
-        if (node == null) return;
-        fillList(list,node.left);
-        list.add(head.key);
-        fillList(list,node.right);
-
+        if (node != null) {
+            fillList(list, node.left);
+            list.add(head.key);
+            fillList(list, node.right);
+        }
     }
 
     private Node<K,V> rootPut(Node<K,V> node,@NotNull K key, V value){
