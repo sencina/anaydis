@@ -76,9 +76,9 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     private Node<K,V> rootPut(Node<K,V> node,@NotNull K key, V value){
 
-        if (node == null || node.key == null){
+        if (node == null){
             size++;
-            return new Node<K,V>(key,value);
+            return new Node<>(key,value);
         }
 
         else {
@@ -95,8 +95,8 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         }
     }
 
-    private Node<K,V> put(Node<K,V> node, @NotNull K key, V value){
-        if (node == null || node.key == null){
+    private Node<K,V> put(Node<K,V> node,K key, V value){
+        if (node == null){
             size++;
             return new Node<>(key,value);
         }
@@ -109,8 +109,8 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
         return node;
     }
 
-    private Node<K,V> find(Node<K,V> node, @NotNull K key){
-        if (node == null || node.key == null) return null;
+    private Node<K,V> find(Node<K,V> node, K key){
+        if (node == null) return null;
         int comp = comparator.compare(key,node.key);
         if (comp > 0) return find(node.right,key);
         else if (comp < 0) return find(node.left,key);
@@ -140,6 +140,11 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
         public Node<K,V> copy() {
             return new Node<>(this.key,this.value,this.left,this.right);
+        }
+
+        @Override
+        public String toString() {
+            return key+"= "+value;
         }
     }
 
