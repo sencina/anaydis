@@ -37,7 +37,7 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
         Node<K,V> toReturn = find(head,key);
         if (toReturn == null) return null;
-        return toReturn.value;
+        return toReturn.getValue();
     }
 
     @Override
@@ -68,9 +68,9 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     private void fillList(List<K> list, Node<K,V> node) {
         if (node != null) {
-            fillList(list, node.left);
-            list.add(head.key);
-            fillList(list, node.right);
+            fillList(list, node.getLeft());
+            list.add(head.getKey());
+            fillList(list, node.getLeft());
         }
     }
 
@@ -83,15 +83,15 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
         else {
 
-            int comp = comparator.compare(key, node.key);
+            int comp = comparator.compare(key, node.getKey());
 
             if (comp<0){
-                node.left = rootPut(node.left,key,value);
+                node.setLeft(rootPut(node.getLeft(),key,value));
                 return rotateRight(node);}
             else if (comp>0){
-                node.right = rootPut(node.right,key,value);
+                node.setRight(rootPut(node.getRight(),key,value));
                 return rotateLeft(node);}
-            else previousValue = node.value;node.value = value;return node;
+            else previousValue = node.getValue();node.setValue(value);return node;
         }
     }
 
@@ -101,64 +101,35 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
             return new Node<>(key,value);
         }
         else {
-            int comp = comparator.compare(key, node.key);
-            if (comp<0) node.left = put(node.left,key,value);
-            if (comp>0) node.right = put(node.right,key,value);
-            else previousValue = node.value;node.value = value;
+            int comp = comparator.compare(key, node.getKey());
+            if (comp<0) node.setLeft(put(node.getLeft(),key,value));
+            if (comp>0) node.setRight(put(node.getRight(),key,value));
+            else previousValue = node.getValue();node.setValue(value);
         }
         return node;
     }
 
     private Node<K,V> find(Node<K,V> node, K key){
         if (node == null) return null;
-        int comp = comparator.compare(key,node.key);
-        if (comp > 0) return find(node.right,key);
-        else if (comp < 0) return find(node.left,key);
+        int comp = comparator.compare(key,node.getKey());
+        if (comp > 0) return find(node.getRight(),key);
+        else if (comp < 0) return find(node.getLeft(),key);
         else return node;
     }
 
-    private class Node<K, V> {
 
-        private K key;
-        private V value;
-        private Node<K,V> left = null;
-        private Node<K,V> right = null;
-
-        public Node() {
-            new Node<>(null,null);
-        }
-
-        public Node(K key, V value) {
-            new Node<>(key,value,null,null);
-        }
-        public Node(K key, V value, Node<K, V> left, Node<K,V> right) {
-            this.key = key;
-            this.value = value;
-            this.left = left;
-            this.right = right;
-        }
-
-        public Node<K,V> copy() {
-            return new Node<>(this.key,this.value,this.left,this.right);
-        }
-
-        @Override
-        public String toString() {
-            return key+"= "+value;
-        }
-    }
 
     private Node<K,V> rotateLeft(Node<K,V> node){
-        Node<K,V> toReturn = node.right.copy();
-        node.right = toReturn.left;
-        toReturn.left = node;
+        Node<K,V> toReturn = node.getRight().copy();
+        node.setRight(toReturn.getLeft());
+        toReturn.setLeft(node);
         return toReturn;
     }
 
     private Node<K,V> rotateRight(Node<K,V> node){
-        Node<K,V> toReturn = node.left.copy();
-        node.left = toReturn.right;
-        toReturn.right = node;
+        Node<K,V> toReturn = node.getLeft().copy();
+        node.setLeft(toReturn.getRight());
+        toReturn.setRight(node);
         return toReturn;
     }
 
