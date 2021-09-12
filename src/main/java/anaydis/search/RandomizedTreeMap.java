@@ -119,11 +119,14 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     private Node<K,V> find(Node<K,V> node,@NotNull K key) {
         if (node == null) return null;
-        int comp = comparator.compare(key,node.getKey());
 
-        if (comp>0) return find(node.getRight(),key);
-        else if (comp<0) return find(node.getLeft(),key);
-        else return node;
+        else{
+            int comp = comparator.compare(key,node.getKey());
+
+            if (comp>0) return find(node.getRight(),key);
+            else if (comp<0) return find(node.getLeft(),key);
+            else return node;
+        }
     }
 
     private void fillList(List<K> list, Node<K,V> node) {
