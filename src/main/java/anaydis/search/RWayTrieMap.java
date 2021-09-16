@@ -82,19 +82,17 @@ public class RWayTrieMap<V> implements Map<String, V> {
             return result;
         }
 
-        else {
+        if (level == key.length()) {
 
-            if (level == key.length()) {
-
-                previousValue = node.value;
-                node.value = value;
-                return node;
-            } else {
-                int nextIndex = key.charAt(level);
-                node.next[nextIndex] = put(node.next[nextIndex], key, value, level + 1);
-                return node;
-            }
+            previousValue = node.value;
+            node.value = value;
+            return node;
+        } else {
+            int nextIndex = key.charAt(level);
+            node.next[nextIndex] = put(node.next[nextIndex], key, value, level + 1);
+            return node;
         }
+
     }
 
     private void addKeys(Node<V> node,List<String> list) {
