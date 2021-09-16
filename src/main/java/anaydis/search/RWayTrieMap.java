@@ -62,7 +62,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
         else if(level == key.length()) return node;
         else {
             int nextIndex = key.charAt(level);
-            return find(node.next.get(nextIndex),key,level+1);
+            return find(node.next[nextIndex],key,level+1);
         }
     }
 
@@ -73,9 +73,10 @@ public class RWayTrieMap<V> implements Map<String, V> {
 
             if (level<key.length()){
                 int nextIndex = key.charAt(level);
-                result.next.set(nextIndex,put(result.next.get(nextIndex),key,value,level+1));
+                result.next[nextIndex] = put(result.next[nextIndex],key,value,level+1);
             }
             else {
+                previousValue = result.value;
                 result.value = value;
                 size++;
             }
@@ -92,7 +93,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
 
         else {
             int nextIndex = key.charAt(level);
-            node.next.set(nextIndex,put(node.next.get(nextIndex),key,value,level+1));
+            node.next[nextIndex] = put(node.next[nextIndex],key,value,level+1);
             return node;
         }
     }
@@ -101,8 +102,8 @@ public class RWayTrieMap<V> implements Map<String, V> {
         if (node == null) return;
         else {
             list.add(node.key);
-            for (int i = 0; i < node.next.size(); i++) {
-                addKeys(node.next.get(i),list);
+            for (int i = 0; i < node.next.length; i++) {
+                addKeys(node.next[i],list);
             }
         }
     }
@@ -111,15 +112,12 @@ public class RWayTrieMap<V> implements Map<String, V> {
 
         private V value;
         private String key;
-        private List<Node<V>> next;
+        private Node<V>[] next;
 
         public Node(String key,V value) {
             this.value = value;
             this.key = key;
-            this.next = new ArrayList<>();
-            for (int i = 0; i < 256; i++) {
-                next.add(null);
-            }
+            this.next = new Node[256];
         }
 
         public Node(){
