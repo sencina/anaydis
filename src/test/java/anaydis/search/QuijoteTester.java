@@ -28,7 +28,6 @@ public class QuijoteTester {
             tester.messureTime();
         }
 
-
     }
 
     public void messureTime(){
