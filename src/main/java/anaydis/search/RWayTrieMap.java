@@ -38,10 +38,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
     @Override
     public V put(@NotNull String key, V value) {
         head = put(head,key,value,0);
-
-        V toReturn = previousValue;
-        previousValue = null;
-        return toReturn;
+        return previousValue;
     }
 
     @Override
@@ -67,6 +64,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
     }
 
     private Node<V> put(Node<V> node, @NotNull String key, V value, int level){
+
         if (node == null){
 
             Node<V> result = new Node<>();
@@ -84,7 +82,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
             return result;
         }
 
-        else if(level == key.length()){
+        if(level == key.length()){
 
             previousValue = node.value;
             node.value = value;
