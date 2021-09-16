@@ -57,7 +57,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
         return toReturn.iterator();
     }
 
-    private Node<V> find(Node<V> node, String key, int level) {
+    private Node<V> find(Node<V> node, @NotNull String key, int level) {
         if (node == null) return null;
         else if(level == key.length()) return node;
         else {
@@ -66,7 +66,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
         }
     }
 
-    private Node<V> put(Node<V> node, String key, V value, int level){
+    private Node<V> put(Node<V> node, @NotNull String key, V value, int level){
         if (node == null){
 
             Node<V> result = new Node<>();
