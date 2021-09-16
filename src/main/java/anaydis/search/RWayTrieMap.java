@@ -113,15 +113,18 @@ public class RWayTrieMap<V> implements Map<String, V> {
         private String key;
         private Node<V>[] next;
 
-        public Node(String key,V value) {
+        public Node(V value) {
             this.value = value;
-            this.key = key;
             this.next = new Node[256];
+            for (int i = 0; i < 256; i++) {
+                next[i] = null;
+            }
         }
 
         public Node(){
-            new Node<V>(null,null);
+            new Node<>(null);
         }
+
 
     }
 }
