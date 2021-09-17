@@ -67,7 +67,7 @@ public class RWayTrieMap<V> implements Map<String, V> {
 
         if (node == null){
 
-            Node<V> result = new Node<>();
+            Node<V> result = new Node<>(null);
 
             if (level<key.length()){
                 int nextIndex = key.charAt(level);
@@ -124,10 +124,6 @@ public class RWayTrieMap<V> implements Map<String, V> {
             for (int i = 0; i < 256; i++) {
                 next[i] = null;
             }
-        }
-
-        public Node(){
-            new Node(null);
         }
 
     }
