@@ -15,7 +15,6 @@ public class QuijoteSearcher {
     public void addWords(int n,boolean condition) {
 
         try {
-
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/books/quijote.txt"));
             int wordCount = 0;
             while (wordCount <= n) {
