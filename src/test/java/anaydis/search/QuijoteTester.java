@@ -21,11 +21,16 @@ public class QuijoteTester {
 
     public static void main(String[] args) {
 
+        //QuijoteSearcher carlos = new QuijoteSearcher(new ArrayMap<String,Integer>(Comparator.naturalOrder()));
+        //carlos.addWords(200000,true);
+
         int[] lengths = {5000, 50000, 100000, 150000, 200000};
 
         for (int i = 0; i < lengths.length; i++) {
-            QuijoteTester tester = new QuijoteTester(new QuijoteSearcher(new RandomizedTreeMap<String,Integer>(Comparator.naturalOrder())),lengths[i]);
+
+            QuijoteTester tester = new QuijoteTester(new QuijoteSearcher(new RWayTrieMap<>()),lengths[i]);
             tester.messureTime();
+
         }
 
     }
@@ -38,8 +43,11 @@ public class QuijoteTester {
             raf.seek(0);
             for (int i = 0; i < n; i++) {
                 String word = raf.readUTF();
+                word = checkWord(word);
                 long startTime = System.currentTimeMillis();
-                searcher.getMap().containsKey(word);
+                try {
+                    searcher.getMap().containsKey(word);
+                }catch (ArrayIndexOutOfBoundsException e ){}
                 time+= System.currentTimeMillis()-startTime;
             }
             raf.close();
@@ -52,7 +60,12 @@ public class QuijoteTester {
 
     }
 
-
+    private String checkWord(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i)<256) word.replace(word.charAt(i),'\0');
+        }
+        return word;
+    }
 
 
 }

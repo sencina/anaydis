@@ -24,13 +24,19 @@ public class QuijoteSearcher {
                     for (int i = 0; i < aux.length; i++) {
                         if (wordCount > n) break;
                         else {
+                            String toAdd = aux[i];
+                            String cleanToAdd =  toAdd.replaceAll("[^A-Za-z0-9 ]", "");
                             if (condition){
-                                writeResverse(aux[i]);
+                                writeResverse(cleanToAdd);
                             }
                             else {
                                 int value = 1;
-                                if (map.containsKey(aux[i])) value += map.get(aux[i]);
-                                map.put(aux[i], value);
+                                if (map.containsKey(cleanToAdd)){
+                                    try {
+                                        value += map.get(cleanToAdd);
+                                    }catch (NullPointerException e){}
+                                }
+                                map.put(checkWord(cleanToAdd), value);
                             }
                             wordCount++;
                         }
@@ -48,7 +54,7 @@ public class QuijoteSearcher {
     private void writeResverse(String word) {
         String reversedWord = word;
         StringBuilder builder = new StringBuilder(reversedWord);
-        reversedWord = builder.reverse().toString();
+        reversedWord = checkWord(builder.reverse().toString());
 
         try {
             RandomAccessFile raf = new RandomAccessFile(new File("src/test/resources/books/quijoteReverse.txt"),"rw");
@@ -64,6 +70,13 @@ public class QuijoteSearcher {
 
     public Map<String, Integer> getMap() {
         return map;
+    }
+
+    private String checkWord(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i)<256) word.replace(word.charAt(i),'\0');
+        }
+        return word;
     }
 
 
