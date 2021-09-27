@@ -131,7 +131,6 @@ public class RandomizedTreeMap<K,V> implements Map<K,V> {
 
     private void fillList(List<K> list, Node<K,V> node) {
         if (node != null){
-            // orden ascendente
             fillList(list,node.getLeft());
             list.add(node.getKey());
             fillList(list,node.getRight());
