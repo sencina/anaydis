@@ -21,6 +21,10 @@ public class Node<K,V> {
         this.right = null;
     }
 
+    public Node(){
+        this(null,null);
+    }
+
     public K getKey() {
         return key;
     }
