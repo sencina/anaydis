@@ -3,12 +3,11 @@ package anaydis.search;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Comparator;
 import java.util.List;
 
 public class TSTTester {
 
-    private final TSTMap<Integer> map = new TSTMap<>(Comparator.naturalOrder());
+    private final TSTMap<Integer> map = new TSTMap<>();
 
     @Test
     public void putTest(){

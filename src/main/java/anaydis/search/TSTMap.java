@@ -9,12 +9,12 @@ import java.util.List;
 
 public class TSTMap<V> implements Map<String,V> {
 
-    private final Comparator<V> comparator;
+
     private Node<V> head;
     private int size;
 
-    public TSTMap(Comparator comparator) {
-        this.comparator = comparator;
+    public TSTMap() {
+
         this.head  = null;
         this.size = 0;
 
