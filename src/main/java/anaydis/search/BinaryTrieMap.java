@@ -2,7 +2,9 @@ package anaydis.search;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class BinaryTrieMap<V> implements Map<String,V> {
 
@@ -46,7 +48,9 @@ public class BinaryTrieMap<V> implements Map<String,V> {
 
     @Override
     public Iterator<String> keys() {
-        return null;
+        List<String> toReturn = new ArrayList<>();
+        fillList(toReturn,head);
+        return toReturn.iterator();
     }
 
     private Node<V> put(Node<V> node, Node<V> value, int lvl) {
@@ -101,6 +105,16 @@ public class BinaryTrieMap<V> implements Map<String,V> {
     private boolean bitAt(String word, int nth) {
         int pos = nth/8;
         return pos < word.length() && (byte) (word.charAt(pos) >> (nth %8) & 1) !=0;
+    }
+
+    private void fillList(List<String> list, Node<V> node) {
+
+        if (node == null) return;
+        else {
+            fillList(list,node.left);
+            if (node.isLeaf()) list.add(node.key);
+            fillList(list,node.right);
+        }
     }
 
     private int toInt(boolean a) {
