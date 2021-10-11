@@ -54,6 +54,12 @@ public class RWayTrieMap<V> implements Map<String, V> {
         return toReturn.iterator();
     }
 
+    public List<String> autoComplete(String prefix){
+        List<String> toReturn = new ArrayList<>();
+        autoComplete(toReturn,head,"",prefix,0);
+        return toReturn;
+    }
+
     private Node<V> find(Node<V> node, @NotNull String key, int level) {
         if (node == null) return null;
         else if(level == key.length()) return node;
@@ -110,6 +116,37 @@ public class RWayTrieMap<V> implements Map<String, V> {
             }
         }
 
+
+    }
+
+    private void autoComplete(List<String> list, Node<V> node, String current, String prefix, int lvl){
+
+        if (node == null) return;
+
+        else if (lvl< prefix.length()){
+
+                int index = prefix.charAt(lvl);
+
+                if (node.next[index] != null) autoComplete(list,node.next[index],current+(char) index,prefix,lvl+1);
+
+        }
+
+        else {
+
+            for (int i = 0; i < node.next.length; i++) {
+
+                if (node.next[i] != null ){
+
+                    if (node.next[i].value != null){
+                        list.add(current+(char)i);
+                    }
+
+                    autoComplete(list,node.next[i],current+(char) i,prefix,lvl+1);
+                }
+
+            }
+
+        }
 
     }
 

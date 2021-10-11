@@ -3,12 +3,11 @@ package anaydis.search;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+
 import java.util.Iterator;
 import java.util.List;
 
 public class TSTMap<V> implements Map<String,V> {
-
 
     private Node<V> head;
     private int size;
@@ -65,6 +64,48 @@ public class TSTMap<V> implements Map<String,V> {
         List<String> toRetrun = new ArrayList<>();
         autoComplete(toRetrun,prefix,head,0,"");
         return toRetrun;
+    }
+
+    public List<String> wildCard(String prefix) {
+
+        List<String> toReturn = new ArrayList<>();
+        fillWildList(toReturn,head,prefix,"",0);
+        return toReturn;
+
+    }
+
+    private void fillWildList(List<String> list, Node<V> node, String prefix, String current,int lvl) {
+
+        if (node == null) return;
+
+        else if (lvl == 0){
+
+            if (node.chr == prefix.charAt(lvl)) fillWildList(list,node.middle,prefix,current+node.chr,lvl+1);
+            else if (node.chr < prefix.charAt(lvl)) fillWildList(list,node.right,prefix,current,lvl);
+            else fillWildList(list,node.left,prefix,current,lvl);
+        }
+
+        else if (lvl > 0 && lvl < prefix.length()-1){
+
+            fillWildList(list,node.left,prefix,current,lvl);
+            fillWildList(list,node.middle,prefix,current+node.chr,lvl+1);
+            fillWildList(list,node.right,prefix,current,lvl);
+
+        }
+
+        else {
+
+            if (node.chr == prefix.charAt(lvl)){
+                if (node.value != null){
+                    list.add(current+node.chr);
+                }
+            }
+
+            else if (node.chr < prefix.charAt(lvl)) fillWildList(list,node.right,prefix,current,lvl);
+            else fillWildList(list,node.left,prefix,current,lvl);
+
+        }
+
     }
 
     private Node<V> find(Node<V> node, String key, int lvl) {
@@ -156,7 +197,7 @@ public class TSTMap<V> implements Map<String,V> {
 
     private class Node<V>{
 
-        private char chr;
+        private final char chr;
         private V value;
         private Node<V> left;
         private Node<V> middle;
@@ -168,10 +209,6 @@ public class TSTMap<V> implements Map<String,V> {
             this.left = null;
             this.middle = null;
             this.right = null;
-        }
-
-        public Node(){
-            this('\u0000',null);
         }
 
         public Node(char key){
