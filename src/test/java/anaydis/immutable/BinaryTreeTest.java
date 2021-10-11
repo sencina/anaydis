@@ -40,4 +40,15 @@ public class BinaryTreeTest {
         Assert.assertEquals(1,tree.size());
 
     }
+
+    @Test
+    public void containsKeyTest(){
+
+        Map<Integer,String> tree = new BinaryTree<>(comparator);
+        Assert.assertFalse(tree.containsKey(1));
+
+        tree = tree.put(1,"ola");
+        Assert.assertTrue(tree.containsKey(1));
+
+    }
 }
