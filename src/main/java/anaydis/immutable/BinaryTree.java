@@ -106,4 +106,5 @@ public class BinaryTree<K,V> implements Map<K,V>{
             this.inserted = inserted;
         }
     }
+
 }
