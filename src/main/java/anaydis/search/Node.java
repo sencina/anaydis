@@ -15,14 +15,15 @@ public class Node<K,V> {
     }
 
     public Node(K key, V value) {
-        this.key = key;
-        this.value = value;
-        this.left = null;
-        this.right = null;
+        this(key,value,null,null);
     }
 
     public Node(){
-        this(null,null);
+        this(null,null,null,null);
+    }
+
+    public Node<K,V> getCopy(){
+        return new Node<>(this.key,this.value,this.left,this.right);
     }
 
     public K getKey() {

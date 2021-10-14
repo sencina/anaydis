@@ -85,7 +85,9 @@ public class BinaryTree<K,V> implements Map<K,V>{
                 result = new Result<>(new Node<>(node.getKey(), node.getValue(), leftResult.node, node.getRight()), leftResult.inserted);
             }
             else if (comparator.compare(key,node.getKey()) == 0){
-                return new Result<>(new Node<>(node.getKey(), value, node.getLeft(), node.getRight()),false);
+                Node<K,V> aux = node.getCopy();
+                aux.setValue(value);
+                return new Result<>(aux,false);
             }
             else {
                 Result<K,V> rightResult = put(node.getRight(),key,value);
