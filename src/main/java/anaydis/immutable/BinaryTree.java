@@ -10,6 +10,8 @@ import java.util.List;
 
 public class BinaryTree<K,V> implements Map<K,V>{
 
+
+
     private final int size;
     private final Comparator<K> comparator;
     private final Node<K,V> root;
@@ -57,11 +59,9 @@ public class BinaryTree<K,V> implements Map<K,V>{
     private void fillList(ArrayList<K> list, Node<K,V> node) {
         if (node == null) return;
         else {
-
             fillList(list,node.getLeft());
             list.add(node.getKey());
             fillList(list,node.getRight());
-
         }
     }
 
@@ -86,7 +86,7 @@ public class BinaryTree<K,V> implements Map<K,V>{
             else if (comparator.compare(key,node.getKey()) == 0){
                 Node<K,V> aux = node.getCopy();
                 aux.setValue(value);
-                return aux;
+                result = aux;
             }
             else {
                 Node<K,V> right = put(node.getRight(),key,value);
