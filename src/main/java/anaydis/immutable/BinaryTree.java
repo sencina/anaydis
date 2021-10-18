@@ -52,11 +52,11 @@ public class BinaryTree<K,V> implements Map<K,V>{
     @Override
     public Iterator<K> keys() {
         List<K> toReturn = new ArrayList<>();
-        fillList(new ArrayList<>(),root);
+        fillList(toReturn,root);
         return toReturn.iterator();
     }
 
-    private void fillList(ArrayList<K> list, Node<K,V> node) {
+    private void fillList(List<K> list, Node<K,V> node) {
         if (node == null) return;
         else {
             fillList(list,node.getLeft());
