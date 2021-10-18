@@ -44,7 +44,7 @@ public class BinaryTree<K,V> implements Map<K,V>{
 
     @Override
     public Map<K, V> put(@NotNull K key, V value) {
-        int size = containsKey(key) ? this.size : this.size + 1;
+        int size = containsKey(key) ? size() : size() + 1;
         Node<K,V> aux = put(root,key,value);
         return new BinaryTree<>(comparator,aux,size);
     }
@@ -81,7 +81,7 @@ public class BinaryTree<K,V> implements Map<K,V>{
             Node<K,V> result;
             if (comparator.compare(key,node.getKey()) < 0){
                 Node<K,V> left = put(node.getLeft(),key,value);
-                result = new Node<>(key,value,left,node.getRight());
+                result = new Node<>(node.getKey(),node.getValue(),left,node.getRight());
             }
             else if (comparator.compare(key,node.getKey()) == 0){
                 Node<K,V> aux = node.getCopy();
@@ -90,7 +90,7 @@ public class BinaryTree<K,V> implements Map<K,V>{
             }
             else {
                 Node<K,V> right = put(node.getRight(),key,value);
-                result = new Node<>(key,value,node.getLeft(),right);
+                result = new Node<>(node.getKey(),node.getValue(),node.getLeft(),right);
             }
             return result;
         }
