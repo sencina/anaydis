@@ -42,8 +42,9 @@ public class BinaryTree<K,V> implements Map<K,V>{
 
     @Override
     public Map<K, V> put(@NotNull K key, V value) {
-        Result<K,V> result = put(root,key,value);
-        return new BinaryTree<>(comparator,result.node,(result.inserted) ? this.size+1 : this.size);
+        int size = containsKey(key) ? this.size : this.size + 1;
+        Node<K,V> aux = put(root,key,value);
+        return new BinaryTree<>(comparator,aux,size);
     }
 
     @Override
@@ -67,46 +68,33 @@ public class BinaryTree<K,V> implements Map<K,V>{
     private Node<K,V> find(Node<K,V> node, K key) {
         if(node == null) return null;
         else {
-
             if (comparator.compare(key, node.getKey())<0) return find(node.getLeft(), key);
             else if (comparator.compare(key, node.getKey())>0) return find(node.getRight(), key);
             else return node;
-
         }
     }
 
-    private Result<K,V> put(Node<K,V> node, K key, V value){
+    private Node<K,V> put(Node<K,V> node, K key, V value){
 
-        if (node == null) return new Result<>(new Node<>(key, value),true);
+        if (node == null) return new Node<>(key,value);
         else {
-            Result<K,V> result;
+            Node<K,V> result;
             if (comparator.compare(key,node.getKey()) < 0){
-                Result<K,V> leftResult = put(node.getLeft(),key,value);
-                result = new Result<>(new Node<>(node.getKey(), node.getValue(), leftResult.node, node.getRight()), leftResult.inserted);
+                Node<K,V> left = put(node.getLeft(),key,value);
+                result = new Node<>(key,value,left,node.getRight());
             }
             else if (comparator.compare(key,node.getKey()) == 0){
                 Node<K,V> aux = node.getCopy();
                 aux.setValue(value);
-                return new Result<>(aux,false);
+                return aux;
             }
             else {
-                Result<K,V> rightResult = put(node.getRight(),key,value);
-                result = new Result<>(new Node<>(node.getKey(), node.getValue(), node.getLeft(), rightResult.node), rightResult.inserted);
+                Node<K,V> right = put(node.getRight(),key,value);
+                result = new Node<>(key,value,node.getLeft(),right);
             }
             return result;
         }
 
-    }
-
-    private class Result<K,V>{
-
-        private final Node<K,V> node;
-        private final boolean inserted;
-
-        public Result(Node<K, V> node, boolean inserted) {
-            this.node = node;
-            this.inserted = inserted;
-        }
     }
 
 }
