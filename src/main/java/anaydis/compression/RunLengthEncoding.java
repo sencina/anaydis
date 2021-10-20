@@ -7,28 +7,36 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class RunLengthEncoding implements Compressor{
+
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
 
         int current  = input.read();
         int count = 1;
-        int previous = current;
+        int next = input.read();
 
 
         while (current != -1){
 
-            if (previous == current){
+            if (next == current && count < 0b11111111){
                 count++;
             }
             else {
-                if (count > 1) output.write(0xFF);output.write(count);
+                if (count > 1) {
+                    output.write(0xFF);
+                    output.write(count);
+                }
+
                 output.write(current);
                 count = 1;
             }
 
-            previous = current;
-            current = input.read();
+            current = next;
+            next = input.read();
         }
+
+        input.close();
+        output.close();
 
     }
 
@@ -54,6 +62,9 @@ public class RunLengthEncoding implements Compressor{
             current = input.read();
 
         }
+
+        input.close();
+        output.close();
 
     }
 }
