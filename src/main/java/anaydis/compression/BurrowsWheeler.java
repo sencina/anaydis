@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class BurrowsWheeler implements Compressor{
         rotations.sort(new Comparator(inputList));
         int index = 0;
         for (int j = 0; j < rotations.size(); j++) {
-            output.write(getLastBytes(j,rotations));
+            output.write(getLastBytes(rotations.get(j),inputList));
             if (rotations.get(j) == 1) index = j;
         }
         output.write(0xFF);
@@ -61,6 +62,9 @@ public class BurrowsWheeler implements Compressor{
     private Integer[] getT(List<Integer> l) {
 
         Integer[] t = new Integer[l.size()];
+
+        Arrays.fill(t,-1);
+
         List<Integer> f = l;
         f.sort(java.util.Comparator.naturalOrder());
 
@@ -71,22 +75,22 @@ public class BurrowsWheeler implements Compressor{
         return t;
     }
 
-    private Integer indexOf(Integer integer, List<Integer> l, Integer[] t) {
+    private Integer indexOf(int integer, List<Integer> l, Integer[] t) {
 
         for (int i = 0; i < l.size(); i++) {
 
-            if (l.get(i).equals(integer) && !contains(t,i)) return i;
+            if (l.get(i) == (integer) && !contains(t,i)) return i;
 
         }
 
-        return -1;
+        return 0;
 
     }
 
-    private boolean contains(Integer[] t, Integer integer){
+    private boolean contains(Integer[] t, int integer){
 
         for (int i = 0; i < t.length; i++) {
-            if (t[i].equals(integer)) return true;
+            if (t[i] == (integer)) return true;
         }
         return false;
     }
