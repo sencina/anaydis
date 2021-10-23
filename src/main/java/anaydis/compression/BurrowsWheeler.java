@@ -50,7 +50,7 @@ public class BurrowsWheeler implements Compressor{
         List<Integer> l = getL(input);
         int index = getIndex(input);
 
-        Integer[] t = getT(l);
+        int[] t = getT(l);
 
         for (int i = 0; i < t.length; i++) {
             output.write(l.get(index));
@@ -59,9 +59,9 @@ public class BurrowsWheeler implements Compressor{
 
     }
 
-    private Integer[] getT(List<Integer> l) {
+    private int[] getT(List<Integer> l) {
 
-        Integer[] t = new Integer[l.size()];
+        int[] t = new int[l.size()];
 
         Arrays.fill(t,-1);
 
@@ -75,22 +75,18 @@ public class BurrowsWheeler implements Compressor{
         return t;
     }
 
-    private Integer indexOf(int integer, List<Integer> l, Integer[] t) {
-
-        for (int i = 0; i < l.size(); i++) {
-
-            if (l.get(i) == (integer) && !contains(t,i)) return i;
-
+    private int indexOf(int integer, List<Integer> lColumn, int[] toReturn) {
+        for (int i = 0; i < lColumn.size(); i++) {
+            if (lColumn.get(i)==integer && !contains(i,toReturn)){
+                return i;
+            }
         }
-
         return 0;
-
     }
 
-    private boolean contains(Integer[] t, int integer){
-
-        for (int i = 0; i < t.length; i++) {
-            if (t[i] == (integer)) return true;
+    private boolean contains(int integer,int[]array){
+        for (int i = 0; i < array.length; i++) {
+            if (array[i]==integer)return true;
         }
         return false;
     }
