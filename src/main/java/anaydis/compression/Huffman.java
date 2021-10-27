@@ -1,6 +1,5 @@
 package anaydis.compression;
 
-import anaydis.immutable.BinaryTree;
 import anaydis.search.Map;
 import anaydis.search.RandomizedTreeMap;
 import org.jetbrains.annotations.NotNull;
@@ -8,10 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+import java.util.*;
 
 public class Huffman implements Compressor{
 
@@ -22,23 +18,41 @@ public class Huffman implements Compressor{
         }
     };
 
-
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
 
-        final Map<Integer,Double> frequencies = new RandomizedTreeMap<>(integerComparator);
+        final Map<Integer,Integer> frequencies = new RandomizedTreeMap<>(integerComparator);
         fillFrequencies(input,frequencies);
 
-        Queue<Node> priorityQueue = new PriorityQueue<>();
+        final Queue<Node> priorityQueue = new PriorityQueue<>();
         fillPriorityQueue(priorityQueue,frequencies);
 
-        
+        final Node trie = generateTrie(priorityQueue);
 
 
 
     }
 
-    private void fillPriorityQueue(Queue<Node> queue, Map<Integer, Double> map) {
+    @Override
+    public void decode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
+
+    }
+
+    private Node generateTrie(Queue<Node> priorityQueue) {
+
+        while (priorityQueue.size() > 1){
+
+            Node left = priorityQueue.poll();
+            Node right = priorityQueue.poll();
+
+            priorityQueue.add(new Node(null, left.frequency+ right.frequency,left,right));
+
+        }
+
+        return priorityQueue.poll();
+    }
+
+    private void fillPriorityQueue(Queue<Node> queue, Map<Integer, Integer> map) {
 
         List<Integer> keys = (List<Integer>) map.keys();
 
@@ -51,43 +65,50 @@ public class Huffman implements Compressor{
 
     }
 
-    private void fillFrequencies(InputStream input, Map<Integer, Double> frequencies) throws IOException {
+    private void fillFrequencies(InputStream input, Map<Integer, Integer> frequencies) throws IOException {
 
-        int length = input.available();
+        int character = input.read();
+        int length = 1;
 
-        for (int i = 0; i < length-1; i++) {
-            int code = input.read();
-            if (frequencies.containsKey(code)) continue;
-            int frequency = 0;
-            for (int j = i+1; j < length-1; j++) {
-                int aux = input.read();
-                if (code == aux) frequency++;
+        while (character != -1){
+
+            int quantity = 1;
+
+            if (frequencies.containsKey(character)){
+                quantity += frequencies.get(character);
             }
 
-            frequencies.put(code, (double) (frequency/length));
+            frequencies.put(character,quantity);
+            length++;
+
         }
 
+        Iterator<Integer> iterator = frequencies.keys();
 
     }
 
-    @Override
-    public void decode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
-
-    }
 
     private class Node implements Comparable<Node>{
 
         private final Integer value;
-        private final Double frequency;
+        private final Integer frequency;
+        private final Node left;
+        private final Node right;
 
-        public Node(Integer value, Double frequency) {
+        public Node(Integer value, Integer frequency, Node left, Node right) {
             this.value = value;
             this.frequency = frequency;
+            this.left = left;
+            this.right = right;
+        }
+
+        public Node(Integer value, Integer frequency){
+            this(value,frequency,null,null);
         }
 
         @Override
         public int compareTo(@NotNull Node o) {
-            return Double.compare(frequency,o.frequency);
+            return Integer.compare(frequency,o.frequency);
         }
 
     }
