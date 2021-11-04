@@ -56,6 +56,7 @@ public class HuffmanTest {
             "here they all unite.  Tell me, does the magnetic virtue of the\n" +
             "needles of the compasses of all those ships attract them thither?\n" +
             "\"";
+    //private final String text = "abracadabra";
 
     @Test
     public void huffmanTest(){
@@ -79,5 +80,8 @@ public class HuffmanTest {
         Assert.assertEquals(text,decoded.toString());
 
     }
+
+
+
 
 }
