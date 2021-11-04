@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.io.*;
 
-public class BarrowsWheelerTest {
+public class MoveToFrontTest {
 
-    Compressor compressor = new BurrowsWheeler();
+    Compressor compressor = (Compressor) new MoveToFront();
     private final String text= "\"Call me Ishmael.  Some years ago--never mind how long\n" +
             "precisely--having little or no money in my purse, and nothing\n" +
             "particular to interest me on shore, I thought I would sail about a\n" +
@@ -77,6 +77,5 @@ public class BarrowsWheelerTest {
 
 
     }
-
 
 }

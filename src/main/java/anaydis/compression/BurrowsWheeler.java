@@ -17,6 +17,7 @@ public class BurrowsWheeler implements Compressor{
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
 
+
         int character = input.read();
         List<Integer> inputList = new ArrayList<>();
         List<Integer> rotations = new ArrayList<>();

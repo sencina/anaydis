@@ -12,6 +12,7 @@ import java.util.List;
 public class MoveToFront implements Compressor {
 
 
+
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
         List<Integer>dictionary=createDictionary();
