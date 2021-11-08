@@ -1,8 +1,10 @@
 package anaydis.compression;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class MoveToFrontTest {
 
@@ -60,24 +62,23 @@ public class MoveToFrontTest {
     @Test
     public void MTFTest(){
 
-        InputStream inputStream = new ByteArrayInputStream(text.getBytes());
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        InputStream input = new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+
         try {
-            compressor.encode(inputStream,outputStream);
+            compressor.encode(input, output);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        InputStream encoded = new ByteArrayInputStream(outputStream.toByteArray());
+        InputStream encoded = new ByteArrayInputStream(output.toByteArray());
         OutputStream decoded = new ByteArrayOutputStream();
-
         try {
             compressor.decode(encoded,decoded);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-
+        Assert.assertEquals(text,decoded.toString());
     }
 
 }
