@@ -37,17 +37,14 @@ public class BurrowsWheeler implements Compressor{
             if (rotations.get(j) == 1) index = j;
         }
         output.write(0xFF);
-        while (index > 127){
-            output.write(127);
-            index-=127;
-        }
-        output.write(index);
+        writeInt(index,output);
     }
 
     @Override
     public void decode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
 
         List<Integer> l = getL(input);
+
         int index = getIndex(input);
 
         int[] t = getT(l);
@@ -65,7 +62,8 @@ public class BurrowsWheeler implements Compressor{
 
         Arrays.fill(t,-1);
 
-        List<Integer> f = l;
+        List<Integer> f = new ArrayList<>(l);
+
         f.sort(java.util.Comparator.naturalOrder());
 
         for (int i = 0; i < l.size(); i++) {
@@ -74,6 +72,8 @@ public class BurrowsWheeler implements Compressor{
 
         return t;
     }
+
+
 
     private int indexOf(int integer, List<Integer> lColumn, int[] toReturn) {
         for (int i = 0; i < lColumn.size(); i++) {
@@ -85,8 +85,8 @@ public class BurrowsWheeler implements Compressor{
     }
 
     private boolean contains(int integer,int[]array){
-        for (int i = 0; i < array.length; i++) {
-            if (array[i]==integer)return true;
+        for (int j : array) {
+            if (j == integer) return true;
         }
         return false;
     }
@@ -122,6 +122,17 @@ public class BurrowsWheeler implements Compressor{
 
     }
 
+    private void writeInt(int length, OutputStream output) throws IOException {
+
+
+        while (length-127>0){
+            output.write(127);
+            length-= 127;
+        }
+
+        output.write(length);
+
+    }
 
 
     private class Comparator implements java.util.Comparator<Integer>{
@@ -146,5 +157,7 @@ public class BurrowsWheeler implements Compressor{
         private int byteAt(int offset, List<Integer> array, int pos){
             return array.get((pos + offset) % array.size());
         }
+
+
     }
 }
