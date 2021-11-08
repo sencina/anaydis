@@ -6,8 +6,8 @@ import java.io.*;
 
 public class MoveToFrontTest {
 
-    Compressor compressor = (Compressor) new MoveToFront();
-    private final String text= "\"Call me Ishmael.  Some years ago--never mind how long\n" +
+    Compressor compressor = new MoveToFront();
+    /*private final String text= "\"Call me Ishmael.  Some years ago--never mind how long\n" +
             "precisely--having little or no money in my purse, and nothing\n" +
             "particular to interest me on shore, I thought I would sail about a\n" +
             "little and see the watery part of the world.  It is a way I have of\n" +
@@ -53,11 +53,13 @@ public class MoveToFrontTest {
             "and alleys, streets and avenues--north, east, south, and west.  Yet\n" +
             "here they all unite.  Tell me, does the magnetic virtue of the\n" +
             "needles of the compasses of all those ships attract them thither?\n" +
-            "\"";
-    @Test
-    public void barrowsWheelerTest(){
+            "\"";*/
 
-        String drDobbs = "DRDOBBS";
+    private final String text= "mamaamasa";
+
+    @Test
+    public void MTFTest(){
+
         InputStream inputStream = new ByteArrayInputStream(text.getBytes());
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {

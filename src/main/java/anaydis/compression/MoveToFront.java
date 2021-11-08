@@ -56,7 +56,7 @@ public class MoveToFront implements Compressor {
 
         List<Integer>dictionary=new ArrayList<>();
 
-        for (int i = 0; i < 255; i++) {
+        for (int i = 0; i <= 255; i++) {
             dictionary.add(i);
         }
 
