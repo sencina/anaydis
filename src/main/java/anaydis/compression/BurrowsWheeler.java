@@ -13,7 +13,6 @@ import java.util.List;
 public class BurrowsWheeler implements Compressor{
 
 
-
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
 
