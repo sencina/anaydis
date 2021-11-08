@@ -15,7 +15,9 @@ public class MoveToFront implements Compressor {
 
     @Override
     public void encode(@NotNull InputStream input, @NotNull OutputStream output) throws IOException {
+
         List<Integer>dictionary=createDictionary();
+
         int current=input.read();
 
 
@@ -51,10 +53,13 @@ public class MoveToFront implements Compressor {
     }
 
     private List<Integer> createDictionary(){
+
         List<Integer>dictionary=new ArrayList<>();
+
         for (int i = 0; i < 255; i++) {
             dictionary.add(i);
         }
+
         return dictionary;
     }
 }
